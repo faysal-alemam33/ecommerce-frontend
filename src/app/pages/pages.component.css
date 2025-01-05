@@ -1,0 +1,9 @@
+.pages-container {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.pages-container h1 {
+  font-size: 2rem;
+  color: #333;
+}

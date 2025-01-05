@@ -1,0 +1,32 @@
+/* Custom styles for the navbar */
+.navbar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.nav-link {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #a6a6a6 !important;
+  transform: scale(1.1);
+}
+
+.nav-link.active {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Adjust body padding to account for fixed navbar */
+body {
+  padding-top: 70px;
+}

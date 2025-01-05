@@ -1,0 +1,92 @@
+/* Main container */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #456a78;
+  padding: 20px;
+}
+
+/* Form box for register */
+.register-form {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+/* Form title */
+.register-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input fields */
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+/* Input focus effect */
+.register-form input[type="text"]:focus,
+.register-form input[type="email"]:focus,
+.register-form input[type="password"]:focus {
+  border-color: #000000; /* Golden color */
+  outline: none;
+}
+
+/* Submit Button */
+.register-form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #456a78; /* Golden */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-form button[type="submit"]:hover {
+  background-color: #6a6a69; /* Darker golden */
+}
+
+/* Error messages */
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.alert {
+  margin-top: 10px;
+  color: red;
+}
+
+/* ================================
+   Responsive Styles (for smaller screens)
+================================= */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 10px;
+  }
+
+  .register-form {
+    width: 90%;
+  }
+
+  .navbar a {
+    font-size: 14px;
+  }
+}
