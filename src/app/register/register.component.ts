@@ -5,16 +5,19 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  standalone: false,
-
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css'], // Use `styleUrls` instead of `styleUrl`
 })
 export class RegisterComponent {
   registerForm: FormGroup;
   submitted = false;
+  errorMessage: string | null = null; // Added for better error handling
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService,private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -22,13 +25,17 @@ export class RegisterComponent {
     });
   }
 
-  get f() {
+  // Getter for easy access to form controls
+  get formControls() {
     return this.registerForm.controls;
   }
 
-  register() {
+  // Handle user registration
+  onRegister(): void {
     this.submitted = true;
+    this.errorMessage = null; // Reset error message on new submission
 
+    // Return early if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
@@ -36,19 +43,24 @@ export class RegisterComponent {
     const formData = this.registerForm.value;
 
     this.authService.register(formData).subscribe({
-      next: (response) => {
-        alert(response.message);
-        this.router.navigate(['/login']);
-      },
-      error: (error) => {
-        if (error.status === 400 && error.error.message) {
-          alert(error.error.message);
-        } else {
-          console.error('Registration failed:', error);
-          alert('An unexpected error occurred.');
-        }
-      }
+      next: (response) => this.handleRegistrationSuccess(response),
+      error: (error) => this.handleRegistrationError(error),
     });
   }
 
+  // Handle successful registration
+  private handleRegistrationSuccess(response: any): void {
+    console.log('Registration successful:', response.message);
+    this.router.navigate(['/login']); // Navigate to login page after successful registration
+  }
+
+  // Handle registration error
+  private handleRegistrationError(error: any): void {
+    if (error.status === 400 && error.error.message) {
+      this.errorMessage = error.error.message; // Display specific error message from the server
+    } else {
+      console.error('Registration failed:', error);
+      this.errorMessage = 'An unexpected error occurred. Please try again later.';
+    }
+  }
 }

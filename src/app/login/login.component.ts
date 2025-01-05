@@ -56,8 +56,8 @@ export class LoginComponent {
     this.router.navigate(['/profile', email]);
   }
 
-  // Handle login error
-  private handleLoginError(error: any): void {
+  // Handle login error private
+  handleLoginError(error: any): void {
     if (error.status === 401) {
       this.errorMessage = 'Invalid email or password.';
     } else {
